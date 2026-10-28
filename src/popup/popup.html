@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VYRON</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="frame">
+  <header class="brand">
+    <img class="mark" src="icons/logo.png" alt="" width="30" height="30">
+    <div>
+      <h1>VYRON</h1>
+      <p>Every video. Your language.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="card hero">
+      <div class="hero-text">
+        <strong id="heroTitle">Đọc bản dịch</strong>
+        <span>Giọng tiếng Việt, tự khớp tốc độ video</span>
+      </div>
+      <label class="switch" title="Bật / tắt giọng đọc">
+        <input id="spEnabled" type="checkbox" role="switch" aria-labelledby="heroTitle">
+        <span class="switch-track"><span class="switch-thumb"></span></span>
+      </label>
+    </section>
+
+    <section id="status" class="card status" data-tone="idle" aria-live="polite">
+      <span class="dot" aria-hidden="true"></span>
+      <div class="status-text">
+        <p id="statusTitle" class="status-title"></p>
+        <p id="statusSub" class="status-sub"></p>
+      </div>
+      <button id="retry" class="btn-small" type="button" hidden>Thử lại</button>
+    </section>
+
+    <section class="card">
+      <div class="slider-head">
+        <label for="spDuck">Âm lượng video khi đang đọc</label>
+        <output id="spDuckVal" for="spDuck"></output>
+      </div>
+      <input id="spDuck" type="range" min="0" max="100" step="5">
+      <p class="hint">Kéo thấp hơn để giọng đọc nổi rõ hơn trên tiếng gốc.</p>
+    </section>
+
+    <section class="card">
+      <div class="slider-head">
+        <label for="spShort">Câu ngắn đọc lướt, không ngắt</label>
+        <output id="spShortVal" for="spShort"></output>
+      </div>
+      <input id="spShort" type="range" min="0" max="12" step="1">
+      <p class="hint">Câu có số từ bằng hoặc ít hơn mức này sẽ bỏ dấu câu để đọc liền mạch. Câu dài hơn giữ dấu câu như bình thường. Kéo về 0 để luôn giữ dấu câu.</p>
+    </section>
+
+    <section class="card">
+      <div class="slider-head">
+        <label for="spRate">Tốc độ đọc tối đa</label>
+        <output id="spRateVal" for="spRate"></output>
+      </div>
+      <input id="spRate" type="range" min="11" max="17" step="1">
+      <p class="hint">Mức giọng đọc được tăng lên khi phải bắt kịp video. Thấp hơn thì giọng tự nhiên hơn nhưng dễ bỏ sót câu khi người nói nhanh.</p>
+    </section>
+
+    <details class="adv">
+      <summary>Nâng cao</summary>
+      <div class="adv-body">
+        <label class="field">
+          <span>Giọng đọc</span>
+          <select id="spVoice"></select>
+        </label>
+        <label class="check">
+          <input id="spNetwork" type="checkbox">
+          <span>Cho phép giọng qua mạng
+            <small>Văn bản bản dịch sẽ được gửi tới dịch vụ giọng nói của trình duyệt.</small></span>
+        </label>
+        <fieldset class="modes">
+          <legend>Từ tiếng Anh trong câu</legend>
+          <label class="check">
+            <input id="englishVoice" name="englishMode" type="radio">
+            <span>Đọc bằng giọng Anh
+              <small id="englishInfo">Đọc đúng tên riêng, thương hiệu, thuật ngữ. Mỗi lần đổi giọng có khoảng nghỉ ngắn.</small></span>
+          </label>
+          <label class="check">
+            <input id="englishViet" name="englishMode" type="radio">
+            <span>Đọc bằng giọng Việt (phiên âm sẵn)
+              <small>Liền mạch, không đổi giọng. Từ thông dụng như YouTube, email, iPhone được viết sẵn cách đọc kiểu Việt, gần đúng; từ khác đọc theo vần Việt.</small></span>
+          </label>
+        </fieldset>
+        <label class="check">
+          <input id="debugHud" type="checkbox">
+          <span>Hiện bảng chẩn đoán trên video</span>
+        </label>
+        <button id="clearCache" class="btn-ghost" type="button">Xóa bộ nhớ đệm bản dịch <span id="cacheInfo"></span></button>
+      </div>
+    </details>
+  </main>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
